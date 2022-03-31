@@ -1,0 +1,103 @@
+# You can use this workspace to write and submit your adventure game project.
+import time
+import random
+
+
+def print_time(message):
+    print(message)
+    time.sleep(2)
+
+
+def back_ground():
+    print_time("You find yourself standing in an open field,"
+               "filled with grass and yellow wildflowers.")
+    print_time("Rumor has it that a wicked fairie"
+               "is somewhere around here,"
+               "and has been terrifying the nearby village.")
+    print_time("In front of you is a house")
+    print_time("To your right is a dark cave.")
+    print_time("In your hand you hold your trusty"
+               "(but not very effective) dagger.\n")
+
+
+def some_choices():
+
+    while True:
+        print_time("Enter 1 to knock on the door of the house.")
+        print_time("Enter 2 to peer into the cave. ")
+        response = input("What would you like to do?"
+                         "(Please enter 1 or 2)\n")
+        if '1' in response:
+            room_fight()
+            break
+        if '2' in response:
+            cave_fight()
+            break
+
+
+def room_fight():
+    print_time("You approach the door of the house.")
+    print_time("You are about to knock when the door"
+               "opens and out steps a dragon.")
+    print_time("Eep! This is the dragon's house!")
+    print_time("The dragon attacks you!")
+    print_time("You feel a bit under-prepared for this,"
+               "what with only having a tiny dagger.")
+    random_spears()
+
+
+def random_spears():
+    choice = input("Would you like to (1) fight or (2) run away?\n")
+    if '1' in choice:
+        battle_field()
+    if '2' in choice:
+        print_time("You run back into the field. Luckily,"
+                   "you don't seem to have been followed.")
+        some_choices()
+
+
+def battle_field():
+    random_choices = random.choice(["dagger", "seax"])
+    if "dagger" in random_choices:
+        print_time("You do your best...")
+        print_time("but your dagger is no match for the dragon.")
+        print_time("You have been defeated!")
+        print_time("GAME OVER")
+        start_game_again()
+    if "seax" in random_choices:
+        print_time("You are great Fighter")
+        print_time("you have legendary, terrible, stout,"
+                   "bloody, and short sword.")
+        print_time("You have Won!")
+        print_time("GAME OVER")
+        start_game_again()
+
+
+def start_game_again():
+    play_again = input("Would you like to play again? (y/n) \n ")
+    if 'y' in play_again:
+        print_time("Excellent! Restarting the game ...")
+        back_ground()
+        some_choices()
+    if 'n' in play_again:
+        print_time("Thanks for playing! See you next time.")
+
+
+def cave_fight():
+    print_time("You peer cautiously into the cave.")
+    print_time("It turns out to be only a very small cave.")
+    print_time("Your eye catches a glint of metal"
+               "behind a rock.")
+    print_time("You have found the magical Sword of Ogoroth!")
+    print_time("You discard your silly old dagger"
+               "and take the sword with you.")
+    print_time("You walk back out to the field.")
+    some_choices()
+
+
+def text_adventure():
+    back_ground()
+    some_choices()
+
+
+text_adventure()
